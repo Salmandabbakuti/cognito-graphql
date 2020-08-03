@@ -10,17 +10,16 @@ Amplify.configure({
 
 const resolvers = {
     Query:{
-    login: async (parent, args) => {
-    try{
-    await Auth.signIn(args.username, args.password);
-    return {token:(await Auth.currentSession()).getIdToken().getJwtToken()};
-    }catch(err){
+      login: async (parent, args) => {
+        try{
+        await Auth.signIn(args.username, args.password);
+        return {token:(await Auth.currentSession()).getIdToken().getJwtToken()};
+        }catch(err){
         console.log(JSON.stringify(err))
         throw JSON.stringify(err.message);
         }
     }
 },
-
  Mutation: {
     signup: async(parent, args) => {
           try{
@@ -34,7 +33,7 @@ const resolvers = {
              name: args.name
            }
          })
-         return ({data:`Signup Successful. An OTP has sent on Email.`})
+          return ({data:`Signup Successful. An OTP has sent on Email.`})
           }catch(err){
             console.log(JSON.stringify(err))
             throw JSON.stringify(err.message);}
@@ -44,26 +43,26 @@ const resolvers = {
             let user = await Auth.currentAuthenticatedUser()
             await Auth.changePassword(user, args.oldPassword, args.newPassword);
             return ({data:`Password Change Successful.`})
-           }catch(err){
+            }catch(err){
                console.log(JSON.stringify(err))
                throw JSON.stringify(err.message);
               }
        },
        forgotPasswordRequest: async(parent, args) => {
            try{
-            await Auth.forgotPassword(args.username)
+             await Auth.forgotPassword(args.username)
              return ({data:`Forgot password request submitted. an OTP has sent to your verified email.`})
-           }catch(err){
+             }catch(err){
                console.log(JSON.stringify(err))
                throw JSON.stringify(err);
            }
        },
        forgotPasswordChange: async(parent, args) => {
            try {
-            await Auth.forgotPasswordSubmit(args.username, args.code, args.newPassword)
+             await Auth.forgotPasswordSubmit(args.username, args.code, args.newPassword)
              return ({data:`Password Change Successful.`})
              }catch(err){
-                 console.log(JSON.stringify(err))
+               console.log(JSON.stringify(err))
                throw JSON.stringify(err.message);
              }
        },
@@ -72,7 +71,7 @@ const resolvers = {
             await Auth.signOut({global: true});
             return ({data:`You are signed out.`})
             }catch(err){
-                console.log(JSON.stringify(err))
+               console.log(JSON.stringify(err))
                throw JSON.stringify(err.message);
             }
        },
@@ -81,8 +80,8 @@ const resolvers = {
            await Auth.confirmSignUp(args.username, args.code);
            return ({data:`Email Verified. now you can signin with your email.`})
            }catch(err){
-               console.log(JSON.stringify(err))
-               throw JSON.stringify(err.message);
+              console.log(JSON.stringify(err))
+              throw JSON.stringify(err.message);
            }
        }
    }
