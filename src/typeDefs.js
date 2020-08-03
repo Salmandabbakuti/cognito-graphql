@@ -1,5 +1,4 @@
 const typeDefs = `
-
 type Query {
   login(username:String!, password:String!):loginResponse!
 }
