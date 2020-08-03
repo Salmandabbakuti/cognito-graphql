@@ -45,7 +45,7 @@ const resolvers = {
             return ({data:`Password Change Successful.`})
             }catch(err){
                console.log(JSON.stringify(err))
-               throw JSON.stringify(err.message);
+               throw JSON.stringify(err);
               }
        },
        forgotPasswordRequest: async(parent, args) => {
