@@ -1,0 +1,39 @@
+{
+  "name": "cognito-graphql",
+  "version": "1.0.0",
+  "description": "Cognito Workaround with GraphQL",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js client --ext js,graphql --exec babel-node"
+  },
+  "dependencies": {
+    "graphql-yoga": "^1.14.10",
+    "@babel/polyfill": "^7.0.0",
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "nodemon": "^1.17.5",
+    "aws-sdk": "^2.690.0",
+    "aws-amplify": "^3.0.20",
+    "dotenv": "^8.0.0",
+    "node-fetch": "^2.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Salmandabbakuti/cognito-graphql.git"
+  },
+  "keywords": [
+    "cognito",
+    "graphql",
+    "node",
+    "aws",
+    "amplify"
+  ],
+  "author": "Salman Dabbakuti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Salmandabbakuti/cognito-graphql/issues"
+  },
+  "homepage": "https://github.com/Salmandabbakuti/cognito-graphql#readme"
+}
