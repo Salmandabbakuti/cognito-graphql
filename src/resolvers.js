@@ -18,7 +18,16 @@ const resolvers = {
         console.log(JSON.stringify(err))
         throw JSON.stringify(err.message);
         }
-    }
+    },
+     userInfo: async(parent, args) => {
+         try{
+         const user = await Auth.currentAuthenticatedUser();
+         return user.attributes;
+         }catch(err){
+             console.log(JSON.stringify(err))
+             throw JSON.stringify(err);
+         }
+     }
 },
  Mutation: {
     signup: async(parent, args) => {
@@ -36,7 +45,8 @@ const resolvers = {
           return ({data:`Signup Successful. An OTP has sent on Email.`})
           }catch(err){
             console.log(JSON.stringify(err))
-            throw JSON.stringify(err.message);}
+            throw JSON.stringify(err.message);
+          }
        },
        changePassword: async(parent, args) =>{
            try {
@@ -73,6 +83,25 @@ const resolvers = {
             }catch(err){
                console.log(JSON.stringify(err))
                throw JSON.stringify(err.message);
+            }
+       },
+       resendConfirmationEmail : async(parent, args) => {
+           try{
+           await Auth.resendSignUp(args.username)
+            return ({data:`confirmation email sent to your registered email`})
+            }catch(err){
+               console.log(JSON.stringify(err))
+               throw JSON.stringify(err.message);
+            }
+       },
+       updateUser : async(parent, args) => {
+           try{
+            const user = await Auth.currentAuthenticatedUser();
+            await Auth.updateUserAttributes(user, args);
+            return ({data:`user attributes updated successfully`})
+            }catch(err){
+               console.log(JSON.stringify(err))
+               throw JSON.stringify(err);
             }
        },
        confirmEmail: async(parent, args) =>{
